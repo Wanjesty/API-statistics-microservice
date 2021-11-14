@@ -1,0 +1,6 @@
+sudo -u postgres psql postgres #Открываем консоль PostgreSQL
+create user avito_user with password 'avito_password'; #Создаем и настраиваем пользователя при помощи которого будем соединяться c базой данных из Django
+alter role avito_user set client_encoding to 'utf8'; #Кодировка
+alter role avito_user set default_transaction_isolation to 'read committed'; #Уровень изоляции транзакций 
+alter role avito_user set timezone to 'UTC'; #Временной пояс
+create database avito_db owner avito_user; #Создание базы данных для проекта
