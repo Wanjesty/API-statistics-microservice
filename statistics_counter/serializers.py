@@ -10,7 +10,7 @@ class ShowStaticticSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = statictics_data
-        fields = "__all__"
+        exclude =["id"]
 
 
 class AddStaticticSerializers(serializers.ModelSerializer):

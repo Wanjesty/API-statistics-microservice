@@ -20,13 +20,14 @@ def sort_list_of_dict_by_field(list_of_dicts, field="date"):
         return sorted_list_of_dict
 
 
+
 class ShowStatisticView(APIView):
     """Список всех данных"""
     
     def post(self, request):
         statistic = statictics_data.objects.filter(date__gte=request.data["from"], date__lte=request.data["to"])
         if "sorted_by" in request.data:
-            list_statistic = list(map(model_to_dict, statistic))
+            list_statistic = list(map(lambda x: x.__dict__, statistic))
             sorted_statistic = sort_list_of_dict_by_field(list_statistic, field=request.data["sorted_by"])
             serializer = ShowStaticticSerializers(sorted_statistic, many=True)
             return Response(serializer.data)
