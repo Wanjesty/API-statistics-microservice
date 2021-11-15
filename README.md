@@ -66,3 +66,14 @@
 
 Вариант 2.
 
+Выполнить запросы записанные в файле DatabaseCreationRequests.txt для создания таблицы в базе данных и нового пользователя для неё.
+
+В файле avito_api/settings.py раскоментировать строки:
+- SECRET_KEY = ["123qwer"]
+- DEBUG = [False]
+- ALLOWED_HOSTS = []
+ 
+И законметировать:
+- SECRET_KEY = os.environ.get("SECRET_KEY")
+- DEBUG = int(os.environ.get("DEBUG", default=0))
+- ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
